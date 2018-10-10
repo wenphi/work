@@ -1,0 +1,3 @@
+/home/ywh/work/NContorol/build/testzmq/testzmq/CMakeFiles/threadMechine.dir
+/home/ywh/work/NContorol/build/testzmq/testzmq/CMakeFiles/tzmqclient.dir
+/home/ywh/work/NContorol/build/testzmq/testzmq/CMakeFiles/tzmqserver.dir

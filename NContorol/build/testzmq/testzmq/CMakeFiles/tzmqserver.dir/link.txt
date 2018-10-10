@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -g   CMakeFiles/tzmqserver.dir/tzmqServer.cpp.o  -o tzmqserver -rdynamic -lzmq 

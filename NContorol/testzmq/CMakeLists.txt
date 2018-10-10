@@ -1,0 +1,6 @@
+add_executable(tzmqserver tzmqServer.cpp)
+add_executable(tzmqclient tzmqClient.cpp)
+target_link_libraries(tzmqserver zmq)
+target_link_libraries(tzmqclient zmq)
+add_executable(threadMechine threadMechine.cpp)
+target_link_libraries(threadMechine zmq -pthread jsoncpp)
