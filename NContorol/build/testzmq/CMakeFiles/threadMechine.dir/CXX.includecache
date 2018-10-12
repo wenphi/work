@@ -19,10 +19,6 @@ unistd.h
 -
 csignal
 -
-thread
--
-vector
--
 jsoncpp/json/json.h
 -
 fstream
@@ -31,4 +27,8 @@ fstream
 /home/ywh/work/NContorol/testzmq/threadMechine.cpp
 mechine.hpp
 /home/ywh/work/NContorol/testzmq/mechine.hpp
+thread
+-
+vector
+-
 

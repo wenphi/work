@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <csignal>
-#include <thread>
-#include <vector>
+
 #include <jsoncpp/json/json.h>
 #include <fstream>
 // #include <malloc.h>
@@ -24,22 +23,24 @@ int s_send(void *socket, char *string)
     return (rc);
 }
 //接收字符串函数
-static char *s_recv(void *socket)
+bool s_recv(void *socket, std::string &string_)
 {
-    char *str = (char *)" ";
     zmq_msg_t message;
     zmq_msg_init(&message);
     if (zmq_recvmsg(socket, &message, 0) < 0)
     {
+        zmq_msg_close(&message);
         std::cout << "wait out time" << std::endl;
-        return str;
+        return false;
     }
     int size = zmq_msg_size(&message);
-    char *string = (char *)malloc(size + 1);
-    memcpy(string, zmq_msg_data(&message), size);
+    char *str = (char *)malloc(size + 1);
+    memcpy(&str, zmq_msg_data(&message), size);
     zmq_msg_close(&message);
-    string[size] = 0;
-    return (string);
+    str[size] = 0;
+    string_ = *str;
+    // free(str);
+    return true;
 }
 
 //
@@ -52,7 +53,7 @@ char *encodeCommand(int cmd, std::string message)
     std::string result = jsonCmd.toStyledString();
     return const_cast<char *>(result.c_str());
 }
-Json::Value decodeCommand(char *data)
+Json::Value decodeCommand(std::string data)
 {
     Json::Value jsonCmd;
     Json::Reader reader;

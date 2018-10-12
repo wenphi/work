@@ -1,5 +1,7 @@
 //测试在多个子线程下的收发情况
 #include "mechine.hpp"
+#include <thread>
+#include <vector>
 // #include <stdint.h>
 
 using namespace std;
@@ -52,11 +54,11 @@ void apiThread(void *ctx, int num)
         if (s_send(pSock, data) < 0)
         {
             cout << "can't send message in thread:" << num << endl;
-            usleep(100);
+            usleep(10000);
             continue;
         }
-        cout << data << endl;
-        // usleep(10);
+        // cout << data << endl;
+        usleep(10000);
         count++;
     }
     zmq_close(pSock);
@@ -64,7 +66,7 @@ void apiThread(void *ctx, int num)
 }
 int main()
 {
-    vector<thread> threads;
+    vector<std::thread> threads;
     int count[10];
     signal(SIGINT, stop);
     for (int i = 0; i < 10; i++)
@@ -121,14 +123,14 @@ int main()
     Json::Value jsonCmd;
     int cmd;
     string message;
+    string data;
     // while (!stopFlag)
     while (1)
     {
         //循环等待接收到来的消息，当超过5秒没有接到消息时，
-        char *data = s_recv(pSock);
-        if (strcmp(data, " ") == 0)
+        if (!s_recv(pSock, data))
             break;
-        // cout << "rcv message: " << data << endl;
+        cout << "rcv message: " << data << endl;
         jsonCmd = decodeCommand(data);
         cmd = jsonCmd["cmd"].asInt();
         message = jsonCmd["data"].asString();
