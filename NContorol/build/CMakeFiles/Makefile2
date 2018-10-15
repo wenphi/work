@@ -56,12 +56,14 @@ CMAKE_BINARY_DIR = /home/ywh/work/NContorol/build
 # Directory level rules for directory testzmq
 
 # Convenience name for "all" pass in the directory.
+testzmq/all: testzmq/CMakeFiles/testPubSub.dir/all
 testzmq/all: testzmq/CMakeFiles/threadMechine.dir/all
 testzmq/all: testzmq/CMakeFiles/tzmqclient.dir/all
 testzmq/all: testzmq/CMakeFiles/tzmqserver.dir/all
 .PHONY : testzmq/all
 
 # Convenience name for "clean" pass in the directory.
+testzmq/clean: testzmq/CMakeFiles/testPubSub.dir/clean
 testzmq/clean: testzmq/CMakeFiles/threadMechine.dir/clean
 testzmq/clean: testzmq/CMakeFiles/tzmqclient.dir/clean
 testzmq/clean: testzmq/CMakeFiles/tzmqserver.dir/clean
@@ -72,13 +74,48 @@ testzmq/preinstall:
 .PHONY : testzmq/preinstall
 
 #=============================================================================
+# Target rules for target testzmq/CMakeFiles/testPubSub.dir
+
+# All Build rule for target.
+testzmq/CMakeFiles/testPubSub.dir/all:
+	$(MAKE) -f testzmq/CMakeFiles/testPubSub.dir/build.make testzmq/CMakeFiles/testPubSub.dir/depend
+	$(MAKE) -f testzmq/CMakeFiles/testPubSub.dir/build.make testzmq/CMakeFiles/testPubSub.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/NContorol/build/CMakeFiles  1
+	@echo "Built target testPubSub"
+.PHONY : testzmq/CMakeFiles/testPubSub.dir/all
+
+# Include target in all.
+all: testzmq/CMakeFiles/testPubSub.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+testzmq/CMakeFiles/testPubSub.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/NContorol/build/CMakeFiles 1
+	$(MAKE) -f CMakeFiles/Makefile2 testzmq/CMakeFiles/testPubSub.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/NContorol/build/CMakeFiles 0
+.PHONY : testzmq/CMakeFiles/testPubSub.dir/rule
+
+# Convenience name for target.
+testPubSub: testzmq/CMakeFiles/testPubSub.dir/rule
+.PHONY : testPubSub
+
+# clean rule for target.
+testzmq/CMakeFiles/testPubSub.dir/clean:
+	$(MAKE) -f testzmq/CMakeFiles/testPubSub.dir/build.make testzmq/CMakeFiles/testPubSub.dir/clean
+.PHONY : testzmq/CMakeFiles/testPubSub.dir/clean
+
+# clean rule for target.
+clean: testzmq/CMakeFiles/testPubSub.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target testzmq/CMakeFiles/threadMechine.dir
 
 # All Build rule for target.
 testzmq/CMakeFiles/threadMechine.dir/all:
 	$(MAKE) -f testzmq/CMakeFiles/threadMechine.dir/build.make testzmq/CMakeFiles/threadMechine.dir/depend
 	$(MAKE) -f testzmq/CMakeFiles/threadMechine.dir/build.make testzmq/CMakeFiles/threadMechine.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/NContorol/build/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/NContorol/build/CMakeFiles  2
 	@echo "Built target threadMechine"
 .PHONY : testzmq/CMakeFiles/threadMechine.dir/all
 
@@ -113,7 +150,7 @@ clean: testzmq/CMakeFiles/threadMechine.dir/clean
 testzmq/CMakeFiles/tzmqclient.dir/all:
 	$(MAKE) -f testzmq/CMakeFiles/tzmqclient.dir/build.make testzmq/CMakeFiles/tzmqclient.dir/depend
 	$(MAKE) -f testzmq/CMakeFiles/tzmqclient.dir/build.make testzmq/CMakeFiles/tzmqclient.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/NContorol/build/CMakeFiles  2
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/NContorol/build/CMakeFiles  3
 	@echo "Built target tzmqclient"
 .PHONY : testzmq/CMakeFiles/tzmqclient.dir/all
 
@@ -148,7 +185,7 @@ clean: testzmq/CMakeFiles/tzmqclient.dir/clean
 testzmq/CMakeFiles/tzmqserver.dir/all:
 	$(MAKE) -f testzmq/CMakeFiles/tzmqserver.dir/build.make testzmq/CMakeFiles/tzmqserver.dir/depend
 	$(MAKE) -f testzmq/CMakeFiles/tzmqserver.dir/build.make testzmq/CMakeFiles/tzmqserver.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/NContorol/build/CMakeFiles  3
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/NContorol/build/CMakeFiles  4
 	@echo "Built target tzmqserver"
 .PHONY : testzmq/CMakeFiles/tzmqserver.dir/all
 

@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11 -g   CMakeFiles/testPubSub.dir/testPubSub.cpp.o  -o testPubSub -rdynamic -lzmq -pthread -ljsoncpp 

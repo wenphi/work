@@ -30,7 +30,7 @@ void apiThread(void *ctx, int num)
     }
     int iSndTimeout = 5000; // millsecond
     //设置接收超时
-    if (zmq_setsockopt(pSock, ZMQ_RCVTIMEO, &iSndTimeout, sizeof(iSndTimeout)) < 0)
+    if (zmq_setsockopt(pSock, ZMQ_SNDTIMEO, &iSndTimeout, sizeof(iSndTimeout)) < 0)
     {
         zmq_close(pSock);
         zmq_ctx_destroy(pCtx);
@@ -46,24 +46,37 @@ void apiThread(void *ctx, int num)
     int i;
     string cmd = getString(num);
     string msg = "from thread" + cmd;
-    char *data;
+    Json::Value jsonMsg;
+    Json::Value jsonReply;
+    jsonMsg["cmd"] = num;
+    jsonMsg["message"] = msg;
     int count = 0;
     while (!stopFlag)
     {
-        data = encodeCommand(num, msg);
-        if (s_send(pSock, data) < 0)
+        if (s_send(pSock, jsonMsg) < 0)
         {
             cout << "can't send message in thread:" << num << endl;
-            usleep(10000);
+            usleep(1000);
             continue;
         }
+        if (!s_recv(pSock, jsonReply))
+        {
+            cout << "thread recv out time!" << endl;
+            usleep(100);
+            continue;
+        }
+        cout << "thread: " << num
+             << " recv:" << jsonReply["message"].asString()
+             << " for thread:" << jsonReply["data"].asInt()
+             << endl;
         // cout << data << endl;
-        usleep(10000);
+        // usleep(10000);
         count++;
     }
     zmq_close(pSock);
     cout << "apiThread" << num << "send num:" << count << " exit done!" << endl;
 }
+
 int main()
 {
     vector<std::thread> threads;
@@ -81,104 +94,93 @@ int main()
         return 0;
     }
     //创建套接字
-    void *pSock = zmq_socket(pCtx, ZMQ_DEALER);
-    // void *pPub = zmq_socket(pCtx, ZMQ_PUB);
-    if (pSock == NULL)
-    {
-        cout << "create sock failed!" << endl;
-        zmq_ctx_destroy(pCtx);
-        return 0;
-    }
+    // void *pSock = zmq_socket(pCtx, ZMQ_DEALER);
+    void *pSock = zmq_socket(pCtx, ZMQ_ROUTER);
     //设置超时时间
-    int rcvTimeout = 5000;
-    if (zmq_setsockopt(pSock, ZMQ_RCVTIMEO, &rcvTimeout, sizeof(rcvTimeout)))
-    {
-        cout << "set timeout error!" << endl;
-        zmq_close(pSock);
-        zmq_ctx_destroy(pCtx);
-        return 0;
-    }
-    const char *paddr = "ipc://tmechine.ipc";
-    // if (zmq_bind(pPub, "ipc://pubMessage.ipc") < 0)
-    // {
-    //     cout << "bind address error!" << endl;
-    //     zmq_close(pSock);
-    //     zmq_close(pPub);
-    //     zmq_ctx_destroy(pCtx);
-    //     return 0;
-    // }
-    if (zmq_bind(pSock, paddr) < 0)
-    {
-        cout << "bind address error!" << endl;
-        zmq_close(pSock);
-        // zmq_close(pPub);
-        zmq_ctx_destroy(pCtx);
-        return 0;
-    }
+    int rcvTimeout = 500;
+    zmq_setsockopt(pSock, ZMQ_RCVTIMEO, &rcvTimeout, sizeof(rcvTimeout));
+    zmq_setsockopt(pSock, ZMQ_SNDTIMEO, &rcvTimeout, sizeof(rcvTimeout));
+    zmq_bind(pSock, "ipc://tmechine.ipc");
     //创建十个子线程
     for (int i = 0; i < 10; i++)
     {
         threads.emplace_back(apiThread, pCtx, i);
     }
     Json::Value jsonCmd;
+    Json::Value jsonReply;
     int cmd;
+    string identifine;
     string message;
-    string data;
-    // while (!stopFlag)
-    while (1)
-    {
-        //循环等待接收到来的消息，当超过5秒没有接到消息时，
-        if (!s_recv(pSock, data))
-            break;
-        cout << "rcv message: " << data << endl;
-        jsonCmd = decodeCommand(data);
-        cmd = jsonCmd["cmd"].asInt();
-        message = jsonCmd["data"].asString();
-        switch (cmd)
+    Json::Value data;
+    while (!stopFlag)
+        while (1)
         {
-        case 0:
-            count[0]++;
-            usleep(1);
-            break;
-        case 1:
-            count[1]++;
-            usleep(2000);
-            break;
-        case 2:
-            count[2]++;
-            // usleep(3000);
-            break;
-        case 3:
-            count[3]++;
-            // usleep(4000);
-            break;
-        case 4:
-            count[4]++;
-            // usleep(5000);
-            break;
-        case 5:
-            count[5]++;
-            // usleep(6000);
-            break;
-        case 6:
-            count[6]++;
-            // usleep(7000);
-            break;
-        case 7:
-            count[7]++;
-            // usleep(8000);
-            break;
-        case 8:
-            count[8]++;
-            // usleep(9000);
-            break;
-        case 9:
-            count[9]++;
-            // usleep(10000);
-            break;
+            //循环等待接收到来的消息，当超过5秒没有接到消息时，
+            if (!s_recvMore(pSock, identifine))
+            {
+                cout << "server recvmore data out time!" << endl;
+                break;
+            }
+            if (!s_recv(pSock, data))
+            {
+                cout << "server recv data out time!" << endl;
+                break;
+            }
+            cmd = data["cmd"].asInt();
+            message = data["data"].asString();
+            if (stopFlag)
+                cout << "cmd:" << cmd << endl;
+            switch (cmd)
+            {
+            case 0:
+                count[0]++;
+                usleep(1);
+                break;
+            case 1:
+                count[1]++;
+                usleep(2000);
+                break;
+            case 2:
+                count[2]++;
+                // usleep(3000);
+                break;
+            case 3:
+                count[3]++;
+                // usleep(4000);
+                break;
+            case 4:
+                count[4]++;
+                // usleep(5000);
+                break;
+            case 5:
+                count[5]++;
+                // usleep(6000);
+                break;
+            case 6:
+                count[6]++;
+                // usleep(7000);
+                break;
+            case 7:
+                count[7]++;
+                // usleep(8000);
+                break;
+            case 8:
+                count[8]++;
+                // usleep(9000);
+                break;
+            case 9:
+                count[9]++;
+                // usleep(10000);
+                break;
+            }
+            jsonReply["message"] = "cmd done!";
+            jsonReply["data"] = cmd;
+            if (s_send(pSock, jsonReply) < 0)
+            {
+                cout << "main send data out time !" << endl;
+            }
+            // usleep(2);
         }
-        // usleep(2);
-    }
     //安全退出
     stopFlag = true;
     for (auto &thr : threads)
@@ -191,6 +193,7 @@ int main()
     cout << "thread exit done!" << endl;
     zmq_close(pSock);
     zmq_ctx_destroy(pCtx);
+    cout << "exit add done!" << endl;
     return 0;
 }
 

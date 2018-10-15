@@ -102,6 +102,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named testPubSub
+
+# Build rule for target.
+testPubSub: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testPubSub
+.PHONY : testPubSub
+
+# fast build rule for target.
+testPubSub/fast:
+	$(MAKE) -f testzmq/CMakeFiles/testPubSub.dir/build.make testzmq/CMakeFiles/testPubSub.dir/build
+.PHONY : testPubSub/fast
+
+#=============================================================================
 # Target rules for targets named threadMechine
 
 # Build rule for target.
@@ -150,6 +163,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... threadMechine"
 	@echo "... tzmqclient"
+	@echo "... testPubSub"
 	@echo "... tzmqserver"
 .PHONY : help
 

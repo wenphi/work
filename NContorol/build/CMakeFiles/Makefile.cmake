@@ -44,5 +44,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "testzmq/CMakeFiles/threadMechine.dir/DependInfo.cmake"
   "testzmq/CMakeFiles/tzmqclient.dir/DependInfo.cmake"
+  "testzmq/CMakeFiles/testPubSub.dir/DependInfo.cmake"
   "testzmq/CMakeFiles/tzmqserver.dir/DependInfo.cmake"
   )

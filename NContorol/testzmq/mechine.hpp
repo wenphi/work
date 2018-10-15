@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <csignal>
-
 #include <jsoncpp/json/json.h>
 #include <fstream>
 // #include <malloc.h>
@@ -12,61 +11,116 @@
 void stop(int sig);
 
 //发送字符串函数
-int s_send(void *socket, char *string)
+int s_send(void *socket, Json::Value &jsonMsg)
 {
     int rc;
+    std::string str = jsonMsg.toStyledString();
+    char *cstr = const_cast<char *>(str.c_str());
     zmq_msg_t message;
-    zmq_msg_init_size(&message, strlen(string));
-    memcpy(zmq_msg_data(&message), string, strlen(string));
+    zmq_msg_init_size(&message, strlen(cstr));
+    memcpy(zmq_msg_data(&message), cstr, strlen(cstr));
     rc = zmq_sendmsg(socket, &message, 0);
     zmq_msg_close(&message);
     return (rc);
 }
-//接收字符串函数
-bool s_recv(void *socket, std::string &string_)
+int s_sendMore(void *socket, std::string &msg)
 {
+    int rc;
+    char *cstr = const_cast<char *>(msg.c_str());
+    zmq_msg_t message;
+    zmq_msg_init_size(&message, strlen(cstr));
+    memcpy(zmq_msg_data(&message), cstr, strlen(cstr));
+    rc = zmq_sendmsg(socket, &message, ZMQ_SNDMORE);
+    zmq_msg_close(&message);
+    return (rc);
+}
+//接收字符串函数
+bool s_recv(void *socket, Json::Value &jsonMsg)
+{
+    Json::Reader reader;
     zmq_msg_t message;
     zmq_msg_init(&message);
     if (zmq_recvmsg(socket, &message, 0) < 0)
     {
         zmq_msg_close(&message);
-        std::cout << "wait out time" << std::endl;
         return false;
     }
     int size = zmq_msg_size(&message);
     char *str = (char *)malloc(size + 1);
-    memcpy(&str, zmq_msg_data(&message), size);
+    memcpy(str, zmq_msg_data(&message), size);
     zmq_msg_close(&message);
     str[size] = 0;
-    string_ = *str;
-    // free(str);
+    if (reader.parse(str, jsonMsg))
+    {
+        // std::cout << "rcv:" << str << std::endl;
+        return true;
+    }
+    else
+    {
+        // std::cout << "rcv:" << str << std::endl;
+        return false;
+    }
+}
+
+bool s_recvDealer(void *socket, std::string &address, Json::Value &jsonData)
+{
+
+    Json::Reader reader;
+    zmq_msg_t message;
+    //收第一帧地址
+    zmq_msg_init(&message);
+    if (zmq_recvmsg(socket, &message, ZMQ_RCVMORE) < 0)
+    {
+        zmq_msg_close(&message);
+        return false;
+    }
+    int size = zmq_msg_size(&message);
+    char *str = (char *)malloc(size + 1);
+    memcpy(str, zmq_msg_data(&message), size);
+    zmq_msg_close(&message);
+    str[size] = 0;
+    address = std::string(str);
+    // std::cout << "get address:" << str << std::endl;
+    free(str);
+    //收第二帧数据
+    zmq_msg_init(&message);
+    if (zmq_recvmsg(socket, &message, 0) < 0)
+    {
+        zmq_msg_close(&message);
+        return false;
+    }
+    size = zmq_msg_size(&message);
+    str = (char *)malloc(size + 1);
+    memcpy(str, zmq_msg_data(&message), size);
+    zmq_msg_close(&message);
+    str[size] = 0;
+    if (!reader.parse(str, jsonData))
+        // std::cout << "rcv:" << str << std::endl;
+        return false;
+    // std::cout << msg << std::endl;
     return true;
 }
-
-//
-
-char *encodeCommand(int cmd, std::string message)
+//接收字符串函数
+bool s_recvMore(void *socket, std::string &msg)
 {
-    Json::Value jsonCmd;
-    jsonCmd["cmd"] = cmd;
-    jsonCmd["data"] = message;
-    std::string result = jsonCmd.toStyledString();
-    return const_cast<char *>(result.c_str());
-}
-Json::Value decodeCommand(std::string data)
-{
-    Json::Value jsonCmd;
     Json::Reader reader;
-    Json::Value jsonData;
-    // std::ifstream is;
-    // is.open(data, std::ios::binary);
-    if (reader.parse(data, jsonData))
+    zmq_msg_t message;
+    zmq_msg_init(&message);
+    if (zmq_recvmsg(socket, &message, ZMQ_RCVMORE) < 0)
     {
-        jsonCmd["cmd"] = jsonData["cmd"];
-        jsonCmd["data"] = jsonData["data"];
+        zmq_msg_close(&message);
+        return false;
     }
-    return jsonCmd;
+    int size = zmq_msg_size(&message);
+    char *str = (char *)malloc(size + 1);
+    memcpy(str, zmq_msg_data(&message), size);
+    zmq_msg_close(&message);
+    str[size] = 0;
+    msg = std::string(str);
+    // std::cout << msg << std::endl;
+    return true;
 }
+//
 std::string getString(int num)
 {
     switch (num)

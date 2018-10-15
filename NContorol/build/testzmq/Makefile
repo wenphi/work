@@ -102,6 +102,20 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+testzmq/CMakeFiles/testPubSub.dir/rule:
+	cd /home/ywh/work/NContorol/build && $(MAKE) -f CMakeFiles/Makefile2 testzmq/CMakeFiles/testPubSub.dir/rule
+.PHONY : testzmq/CMakeFiles/testPubSub.dir/rule
+
+# Convenience name for target.
+testPubSub: testzmq/CMakeFiles/testPubSub.dir/rule
+.PHONY : testPubSub
+
+# fast build rule for target.
+testPubSub/fast:
+	cd /home/ywh/work/NContorol/build && $(MAKE) -f testzmq/CMakeFiles/testPubSub.dir/build.make testzmq/CMakeFiles/testPubSub.dir/build
+.PHONY : testPubSub/fast
+
+# Convenience name for target.
 testzmq/CMakeFiles/threadMechine.dir/rule:
 	cd /home/ywh/work/NContorol/build && $(MAKE) -f CMakeFiles/Makefile2 testzmq/CMakeFiles/threadMechine.dir/rule
 .PHONY : testzmq/CMakeFiles/threadMechine.dir/rule
@@ -142,6 +156,30 @@ tzmqserver: testzmq/CMakeFiles/tzmqserver.dir/rule
 tzmqserver/fast:
 	cd /home/ywh/work/NContorol/build && $(MAKE) -f testzmq/CMakeFiles/tzmqserver.dir/build.make testzmq/CMakeFiles/tzmqserver.dir/build
 .PHONY : tzmqserver/fast
+
+testPubSub.o: testPubSub.cpp.o
+.PHONY : testPubSub.o
+
+# target to build an object file
+testPubSub.cpp.o:
+	cd /home/ywh/work/NContorol/build && $(MAKE) -f testzmq/CMakeFiles/testPubSub.dir/build.make testzmq/CMakeFiles/testPubSub.dir/testPubSub.cpp.o
+.PHONY : testPubSub.cpp.o
+
+testPubSub.i: testPubSub.cpp.i
+.PHONY : testPubSub.i
+
+# target to preprocess a source file
+testPubSub.cpp.i:
+	cd /home/ywh/work/NContorol/build && $(MAKE) -f testzmq/CMakeFiles/testPubSub.dir/build.make testzmq/CMakeFiles/testPubSub.dir/testPubSub.cpp.i
+.PHONY : testPubSub.cpp.i
+
+testPubSub.s: testPubSub.cpp.s
+.PHONY : testPubSub.s
+
+# target to generate assembly for a file
+testPubSub.cpp.s:
+	cd /home/ywh/work/NContorol/build && $(MAKE) -f testzmq/CMakeFiles/testPubSub.dir/build.make testzmq/CMakeFiles/testPubSub.dir/testPubSub.cpp.s
+.PHONY : testPubSub.cpp.s
 
 threadMechine.o: threadMechine.cpp.o
 .PHONY : threadMechine.o
@@ -225,7 +263,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... tzmqclient"
+	@echo "... testPubSub"
 	@echo "... tzmqserver"
+	@echo "... testPubSub.o"
+	@echo "... testPubSub.i"
+	@echo "... testPubSub.s"
 	@echo "... threadMechine.o"
 	@echo "... threadMechine.i"
 	@echo "... threadMechine.s"

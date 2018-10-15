@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ywh/work/NContorol/testzmq/mechine.hpp
+zmq.h
+-
+iostream
+-
+cstring
+-
+stdlib.h
+-
+unistd.h
+-
+csignal
+-
+jsoncpp/json/json.h
+-
+fstream
+-
+
+/home/ywh/work/NContorol/testzmq/testPubSub.cpp
+zmq.h
+-
+jsoncpp/json/json.h
+-
+iostream
+-
+thread
+-
+mechine.hpp
+/home/ywh/work/NContorol/testzmq/mechine.hpp
+
