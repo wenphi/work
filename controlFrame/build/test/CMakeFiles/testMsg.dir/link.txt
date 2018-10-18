@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11   CMakeFiles/testMsg.dir/testmessage.cpp.o  -o testMsg -rdynamic ../src/libtest_src.a -ljsoncpp -lzmq -lpthread 

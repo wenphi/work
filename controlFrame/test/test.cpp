@@ -1,4 +1,5 @@
 #include "../src/robotStateMechine/robotStateMechine.hpp"
+#include "base/messageBase.hpp"
 #include <zmq.h>
 #include <csignal>
 #include <iostream>
@@ -9,77 +10,88 @@
 
 bool stopFlag = false;
 moduleBase *robotStateMechine ::baseInstance = NULL;
+std::string taddress = "ipc://stateMechine.ipc";
 
-char *encodeCmd(int module, int cmd, std::string message)
+Json::Value encodeCmd(int module, int cmd, std::string message, int data = 123456)
 {
     Json::Value jsonCmd;
     Json::Value root;
-    root["data"] = 123456;
+    root["data"] = data;
     jsonCmd["module"] = module;
     jsonCmd["cmd"] = cmd;
     root["message"] = message;
     jsonCmd["params"] = root;
-    std::string result = jsonCmd.toStyledString();
-    return const_cast<char *>(result.c_str());
+    return jsonCmd;
 }
-int s_send(void *socket, char *string)
+//motion--addline
+void sendHook0()
 {
-    int rc;
-    zmq_msg_t message;
-    zmq_msg_init_size(&message, strlen(string));
-    memcpy(zmq_msg_data(&message), string, strlen(string));
-    rc = zmq_sendmsg(socket, &message, 0);
-    zmq_msg_close(&message);
-    return (rc);
-}
-void sendHook(void *pctx)
-{
-    if (pctx == NULL)
-    {
-        std::cout << "the ctx is NULL!" << std::endl;
-        return;
-    }
-    void *pCtx = pctx;
-    //创建socket
-    void *pSock;
-    if ((pSock = zmq_socket(pCtx, ZMQ_DEALER)) == NULL)
-    {
-        return;
-    }
-    int iSndTimeout = 10; // millsecond
-    //设置接收超时
-    if (zmq_setsockopt(pSock, ZMQ_RCVTIMEO, &iSndTimeout, sizeof(iSndTimeout)) < 0)
-    {
-        zmq_close(pSock);
-        return;
-    }
-    //连接目标IP192.168.1.2，端口7766
-    if (zmq_connect(pSock, "ipc://stateMechine.ipc") < 0)
-    {
-        zmq_close(pSock);
-        return;
-    }
-    char *data;
+    messageClient *client0 = new messageClient(taddress, "sendHook0", 1000);
     int count = 0;
-    std::string msg = "hello";
+    //发送
+    std::string msg = "hello,i'am sendHook0";
+    Json::Value jsonDate = encodeCmd(0, 0, msg);
+    Json::Value jsonReply;
     while (!stopFlag)
     {
-        data = encodeCmd(0, 0, msg);
-        if (s_send(pSock, data) < 0)
-        {
-            std::cout << "can't send message in thread:" << std::endl;
-            usleep(100);
-            continue;
-        }
-        // std::cout << data << std::endl;
-        usleep(10000);
+        client0->sendJson(jsonDate);
+        jsonReply = client0->recvJson();
+        if (!jsonReply.isNull())
+            std::cout << "send hook0: recv: " << jsonReply["message"].asString() << std::endl;
+        // usleep(1000000);
         count++;
     }
-    zmq_close(pSock);
-    std::cout << "apiThread"
+    delete client0;
+    std::cout << "apiThread0:"
               << "send num:" << count << " exit done!" << std::endl;
 }
-
+//motion--queryTemperature
+void sendHook1()
+{
+    messageClient *client0 = new messageClient(taddress, "sendHook1", 1000);
+    int count = 0;
+    //发送
+    std::string msg = "hello,i'am sendHook1";
+    Json::Value jsonDate = encodeCmd(0, 1, msg);
+    Json::Value jsonReply;
+    while (!stopFlag)
+    {
+        client0->sendJson(jsonDate);
+        jsonReply = client0->recvJson();
+        if (!jsonReply.isNull())
+            std::cout << "send hook1: recv: " << jsonReply["message"].asString() << std::endl;
+        // usleep(1000000);
+        count++;
+    }
+    delete client0;
+    std::cout << "apiThread1:"
+              << "send num:" << count << " exit done!" << std::endl;
+}
+//io--setDibit
+void sendHook2()
+{
+    messageClient *client0 = new messageClient(taddress, "sendHook2", 1000);
+    int count = 0;
+    //发送
+    std::string msg = "hello,i'am sendHook2";
+    Json::Value jsonDate;
+    Json::Value jsonReply;
+    int flag;
+    while (!stopFlag)
+    {
+        flag = count % 2;
+        jsonDate = encodeCmd(1, 1, msg, flag);
+        client0->sendJson(jsonDate);
+        jsonReply = client0->recvJson();
+        if (!jsonReply.isNull())
+            std::cout << "send hook2: recv: " << jsonReply["message"].asString() << std::endl;
+        // usleep(1000000);
+        count++;
+    }
+    delete client0;
+    std::cout << "apiThread2:"
+              << "send num:" << count << " exit done!" << std::endl;
+}
 void stop(int sig)
 {
     if (sig)
@@ -88,20 +100,25 @@ void stop(int sig)
 
 int main()
 {
+    std::vector<std::thread> threads;
     signal(SIGINT, stop);
-    robotStateMechine *rsm = new robotStateMechine();
-    void *pCtx = zmq_ctx_new();
-    rsm->getContext(pCtx);
-    std::thread t1(sendHook, pCtx);
-    std::thread t2(&robotStateMechine::updateHook, rsm);
+    robotStateMechine *rsm = new robotStateMechine(taddress);
+    threads.emplace_back(&robotStateMechine::updateHook, rsm);
+    threads.emplace_back(sendHook0);
+    threads.emplace_back(sendHook1);
+    threads.emplace_back(sendHook2);
+
     rsm->setStart();
     while (!stopFlag)
     {
         sleep(1);
     }
     rsm->setStop();
-    t1.join();
-    t2.join();
-    zmq_ctx_destroy(pCtx);
+    for (auto &thr : threads)
+        thr.join();
+    std::cout << "all thread exit done!" << std::endl;
+
+    delete rsm;
+    std::cout << "term exit done!" << std::endl;
     return 0;
 }

@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/test_src.dir/motion/motionCommands.cpp.o"
   "CMakeFiles/test_src.dir/motion/motion.cpp.o"
   "CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.o"
+  "CMakeFiles/test_src.dir/io/ioCommands.cpp.o"
+  "CMakeFiles/test_src.dir/io/io.cpp.o"
   "libtest_src.pdb"
   "libtest_src.a"
 )

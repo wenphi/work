@@ -7,7 +7,7 @@ class actionBase
 {
   public:
     actionBase() {}
-    ~actionBase() {}
+    virtual ~actionBase() {}
     //子类调用
     void start()
     {
@@ -25,7 +25,7 @@ class actionBase
     }
 
   private:
-    virtual bool run(std::vector<autoValue> params) = 0;
+    virtual bool run(std::vector<autoValue> params) { return true; };
     virtual bool run(Json::Value &cmdData) = 0;
     std::vector<autoValue> actionParams;
     Json::Value jsonData;

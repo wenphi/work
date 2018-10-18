@@ -6,6 +6,38 @@
 
 #IncludeRegexTransform: 
 
+../depend/zhelpers.h
+zmq.h
+-
+pthread.h
+-
+stdint.h
+-
+stdio.h
+-
+stdlib.h
+-
+stdarg.h
+-
+string.h
+-
+sys/time.h
+-
+time.h
+-
+unistd.h
+-
+assert.h
+-
+
+../src/base/messageBase.hpp
+zhelpers.h
+../src/base/zhelpers.h
+jsoncpp/json/json.h
+-
+iostream
+-
+
 /home/ywh/work/controlFrame/src/base/actionBase.hpp
 vector
 -
@@ -20,6 +52,14 @@ list
 iostream
 -
 
+/home/ywh/work/controlFrame/src/base/messageBase.hpp
+zhelpers.h
+/home/ywh/work/controlFrame/src/base/zhelpers.h
+jsoncpp/json/json.h
+-
+iostream
+-
+
 /home/ywh/work/controlFrame/src/base/moduleBase.hpp
 iostream
 -
@@ -29,6 +69,18 @@ jsoncpp/json/json.h
 -
 actionBase.hpp
 /home/ywh/work/controlFrame/src/base/actionBase.hpp
+
+/home/ywh/work/controlFrame/src/io/io.hpp
+../base/moduleBase.hpp
+/home/ywh/work/controlFrame/src/base/moduleBase.hpp
+ioCommands.hpp
+/home/ywh/work/controlFrame/src/io/ioCommands.hpp
+
+/home/ywh/work/controlFrame/src/io/ioCommands.hpp
+iostream
+-
+../base/moduleBase.hpp
+/home/ywh/work/controlFrame/src/base/moduleBase.hpp
 
 /home/ywh/work/controlFrame/src/motion/motion.hpp
 ../base/moduleBase.hpp
@@ -51,10 +103,16 @@ iostream
 /home/ywh/work/controlFrame/src/robotStateMechine/robotStateMechine.hpp
 ../motion/motion.hpp
 /home/ywh/work/controlFrame/src/motion/motion.hpp
+../io/io.hpp
+/home/ywh/work/controlFrame/src/io/io.hpp
+../base/messageBase.hpp
+/home/ywh/work/controlFrame/src/base/messageBase.hpp
 
 /home/ywh/work/controlFrame/test/test.cpp
 ../src/robotStateMechine/robotStateMechine.hpp
 /home/ywh/work/controlFrame/src/robotStateMechine/robotStateMechine.hpp
+base/messageBase.hpp
+/home/ywh/work/controlFrame/test/base/messageBase.hpp
 zmq.h
 -
 csignal

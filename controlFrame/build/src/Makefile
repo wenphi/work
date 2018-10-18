@@ -115,6 +115,54 @@ test_src/fast:
 	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/build
 .PHONY : test_src/fast
 
+io/io.o: io/io.cpp.o
+.PHONY : io/io.o
+
+# target to build an object file
+io/io.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/io/io.cpp.o
+.PHONY : io/io.cpp.o
+
+io/io.i: io/io.cpp.i
+.PHONY : io/io.i
+
+# target to preprocess a source file
+io/io.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/io/io.cpp.i
+.PHONY : io/io.cpp.i
+
+io/io.s: io/io.cpp.s
+.PHONY : io/io.s
+
+# target to generate assembly for a file
+io/io.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/io/io.cpp.s
+.PHONY : io/io.cpp.s
+
+io/ioCommands.o: io/ioCommands.cpp.o
+.PHONY : io/ioCommands.o
+
+# target to build an object file
+io/ioCommands.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/io/ioCommands.cpp.o
+.PHONY : io/ioCommands.cpp.o
+
+io/ioCommands.i: io/ioCommands.cpp.i
+.PHONY : io/ioCommands.i
+
+# target to preprocess a source file
+io/ioCommands.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/io/ioCommands.cpp.i
+.PHONY : io/ioCommands.cpp.i
+
+io/ioCommands.s: io/ioCommands.cpp.s
+.PHONY : io/ioCommands.s
+
+# target to generate assembly for a file
+io/ioCommands.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/io/ioCommands.cpp.s
+.PHONY : io/ioCommands.cpp.s
+
 motion/motion.o: motion/motion.cpp.o
 .PHONY : motion/motion.o
 
@@ -196,6 +244,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test_src"
+	@echo "... io/io.o"
+	@echo "... io/io.i"
+	@echo "... io/io.s"
+	@echo "... io/ioCommands.o"
+	@echo "... io/ioCommands.i"
+	@echo "... io/ioCommands.s"
 	@echo "... motion/motion.o"
 	@echo "... motion/motion.i"
 	@echo "... motion/motion.s"

@@ -115,6 +115,62 @@ test1/fast:
 	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/test1.dir/build.make test/CMakeFiles/test1.dir/build
 .PHONY : test1/fast
 
+# Convenience name for target.
+test/CMakeFiles/testClient0.dir/rule:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testClient0.dir/rule
+.PHONY : test/CMakeFiles/testClient0.dir/rule
+
+# Convenience name for target.
+testClient0: test/CMakeFiles/testClient0.dir/rule
+.PHONY : testClient0
+
+# fast build rule for target.
+testClient0/fast:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient0.dir/build.make test/CMakeFiles/testClient0.dir/build
+.PHONY : testClient0/fast
+
+# Convenience name for target.
+test/CMakeFiles/testClient1.dir/rule:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testClient1.dir/rule
+.PHONY : test/CMakeFiles/testClient1.dir/rule
+
+# Convenience name for target.
+testClient1: test/CMakeFiles/testClient1.dir/rule
+.PHONY : testClient1
+
+# fast build rule for target.
+testClient1/fast:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/build
+.PHONY : testClient1/fast
+
+# Convenience name for target.
+test/CMakeFiles/testMsg.dir/rule:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testMsg.dir/rule
+.PHONY : test/CMakeFiles/testMsg.dir/rule
+
+# Convenience name for target.
+testMsg: test/CMakeFiles/testMsg.dir/rule
+.PHONY : testMsg
+
+# fast build rule for target.
+testMsg/fast:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/build
+.PHONY : testMsg/fast
+
+# Convenience name for target.
+test/CMakeFiles/testServer.dir/rule:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testServer.dir/rule
+.PHONY : test/CMakeFiles/testServer.dir/rule
+
+# Convenience name for target.
+testServer: test/CMakeFiles/testServer.dir/rule
+.PHONY : testServer
+
+# fast build rule for target.
+testServer/fast:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/build
+.PHONY : testServer/fast
+
 test.o: test.cpp.o
 .PHONY : test.o
 
@@ -139,6 +195,102 @@ test.cpp.s:
 	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/test1.dir/build.make test/CMakeFiles/test1.dir/test.cpp.s
 .PHONY : test.cpp.s
 
+testClient0.o: testClient0.cpp.o
+.PHONY : testClient0.o
+
+# target to build an object file
+testClient0.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient0.dir/build.make test/CMakeFiles/testClient0.dir/testClient0.cpp.o
+.PHONY : testClient0.cpp.o
+
+testClient0.i: testClient0.cpp.i
+.PHONY : testClient0.i
+
+# target to preprocess a source file
+testClient0.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient0.dir/build.make test/CMakeFiles/testClient0.dir/testClient0.cpp.i
+.PHONY : testClient0.cpp.i
+
+testClient0.s: testClient0.cpp.s
+.PHONY : testClient0.s
+
+# target to generate assembly for a file
+testClient0.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient0.dir/build.make test/CMakeFiles/testClient0.dir/testClient0.cpp.s
+.PHONY : testClient0.cpp.s
+
+testClient1.o: testClient1.cpp.o
+.PHONY : testClient1.o
+
+# target to build an object file
+testClient1.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/testClient1.cpp.o
+.PHONY : testClient1.cpp.o
+
+testClient1.i: testClient1.cpp.i
+.PHONY : testClient1.i
+
+# target to preprocess a source file
+testClient1.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/testClient1.cpp.i
+.PHONY : testClient1.cpp.i
+
+testClient1.s: testClient1.cpp.s
+.PHONY : testClient1.s
+
+# target to generate assembly for a file
+testClient1.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/testClient1.cpp.s
+.PHONY : testClient1.cpp.s
+
+testServer.o: testServer.cpp.o
+.PHONY : testServer.o
+
+# target to build an object file
+testServer.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/testServer.cpp.o
+.PHONY : testServer.cpp.o
+
+testServer.i: testServer.cpp.i
+.PHONY : testServer.i
+
+# target to preprocess a source file
+testServer.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/testServer.cpp.i
+.PHONY : testServer.cpp.i
+
+testServer.s: testServer.cpp.s
+.PHONY : testServer.s
+
+# target to generate assembly for a file
+testServer.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/testServer.cpp.s
+.PHONY : testServer.cpp.s
+
+testmessage.o: testmessage.cpp.o
+.PHONY : testmessage.o
+
+# target to build an object file
+testmessage.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/testmessage.cpp.o
+.PHONY : testmessage.cpp.o
+
+testmessage.i: testmessage.cpp.i
+.PHONY : testmessage.i
+
+# target to preprocess a source file
+testmessage.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/testmessage.cpp.i
+.PHONY : testmessage.cpp.i
+
+testmessage.s: testmessage.cpp.s
+.PHONY : testmessage.s
+
+# target to generate assembly for a file
+testmessage.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/testmessage.cpp.s
+.PHONY : testmessage.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -147,10 +299,26 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... testClient0"
+	@echo "... testClient1"
 	@echo "... test1"
+	@echo "... testMsg"
+	@echo "... testServer"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"
+	@echo "... testClient0.o"
+	@echo "... testClient0.i"
+	@echo "... testClient0.s"
+	@echo "... testClient1.o"
+	@echo "... testClient1.i"
+	@echo "... testClient1.s"
+	@echo "... testServer.o"
+	@echo "... testServer.i"
+	@echo "... testServer.s"
+	@echo "... testmessage.o"
+	@echo "... testmessage.i"
+	@echo "... testmessage.s"
 .PHONY : help
 
 

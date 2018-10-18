@@ -74,7 +74,7 @@ src/preinstall:
 src/CMakeFiles/test_src.dir/all:
 	$(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/depend
 	$(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  2 3 4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  6 7 8 9 10
 	@echo "Built target test_src"
 .PHONY : src/CMakeFiles/test_src.dir/all
 
@@ -84,7 +84,7 @@ all: src/CMakeFiles/test_src.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/test_src.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/test_src.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/test_src.dir/rule
@@ -107,10 +107,18 @@ clean: src/CMakeFiles/test_src.dir/clean
 
 # Convenience name for "all" pass in the directory.
 test/all: test/CMakeFiles/test1.dir/all
+test/all: test/CMakeFiles/testClient0.dir/all
+test/all: test/CMakeFiles/testClient1.dir/all
+test/all: test/CMakeFiles/testMsg.dir/all
+test/all: test/CMakeFiles/testServer.dir/all
 .PHONY : test/all
 
 # Convenience name for "clean" pass in the directory.
 test/clean: test/CMakeFiles/test1.dir/clean
+test/clean: test/CMakeFiles/testClient0.dir/clean
+test/clean: test/CMakeFiles/testClient1.dir/clean
+test/clean: test/CMakeFiles/testMsg.dir/clean
+test/clean: test/CMakeFiles/testServer.dir/clean
 .PHONY : test/clean
 
 # Convenience name for "preinstall" pass in the directory.
@@ -134,7 +142,7 @@ all: test/CMakeFiles/test1.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
 	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/test1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test1.dir/rule
@@ -150,6 +158,146 @@ test/CMakeFiles/test1.dir/clean:
 
 # clean rule for target.
 clean: test/CMakeFiles/test1.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target test/CMakeFiles/testClient0.dir
+
+# All Build rule for target.
+test/CMakeFiles/testClient0.dir/all: src/CMakeFiles/test_src.dir/all
+	$(MAKE) -f test/CMakeFiles/testClient0.dir/build.make test/CMakeFiles/testClient0.dir/depend
+	$(MAKE) -f test/CMakeFiles/testClient0.dir/build.make test/CMakeFiles/testClient0.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  2
+	@echo "Built target testClient0"
+.PHONY : test/CMakeFiles/testClient0.dir/all
+
+# Include target in all.
+all: test/CMakeFiles/testClient0.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/testClient0.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testClient0.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/testClient0.dir/rule
+
+# Convenience name for target.
+testClient0: test/CMakeFiles/testClient0.dir/rule
+.PHONY : testClient0
+
+# clean rule for target.
+test/CMakeFiles/testClient0.dir/clean:
+	$(MAKE) -f test/CMakeFiles/testClient0.dir/build.make test/CMakeFiles/testClient0.dir/clean
+.PHONY : test/CMakeFiles/testClient0.dir/clean
+
+# clean rule for target.
+clean: test/CMakeFiles/testClient0.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target test/CMakeFiles/testClient1.dir
+
+# All Build rule for target.
+test/CMakeFiles/testClient1.dir/all: src/CMakeFiles/test_src.dir/all
+	$(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/depend
+	$(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  3
+	@echo "Built target testClient1"
+.PHONY : test/CMakeFiles/testClient1.dir/all
+
+# Include target in all.
+all: test/CMakeFiles/testClient1.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/testClient1.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testClient1.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/testClient1.dir/rule
+
+# Convenience name for target.
+testClient1: test/CMakeFiles/testClient1.dir/rule
+.PHONY : testClient1
+
+# clean rule for target.
+test/CMakeFiles/testClient1.dir/clean:
+	$(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/clean
+.PHONY : test/CMakeFiles/testClient1.dir/clean
+
+# clean rule for target.
+clean: test/CMakeFiles/testClient1.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target test/CMakeFiles/testMsg.dir
+
+# All Build rule for target.
+test/CMakeFiles/testMsg.dir/all: src/CMakeFiles/test_src.dir/all
+	$(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/depend
+	$(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  4
+	@echo "Built target testMsg"
+.PHONY : test/CMakeFiles/testMsg.dir/all
+
+# Include target in all.
+all: test/CMakeFiles/testMsg.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/testMsg.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testMsg.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/testMsg.dir/rule
+
+# Convenience name for target.
+testMsg: test/CMakeFiles/testMsg.dir/rule
+.PHONY : testMsg
+
+# clean rule for target.
+test/CMakeFiles/testMsg.dir/clean:
+	$(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/clean
+.PHONY : test/CMakeFiles/testMsg.dir/clean
+
+# clean rule for target.
+clean: test/CMakeFiles/testMsg.dir/clean
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target test/CMakeFiles/testServer.dir
+
+# All Build rule for target.
+test/CMakeFiles/testServer.dir/all: src/CMakeFiles/test_src.dir/all
+	$(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/depend
+	$(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  5
+	@echo "Built target testServer"
+.PHONY : test/CMakeFiles/testServer.dir/all
+
+# Include target in all.
+all: test/CMakeFiles/testServer.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/testServer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testServer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/testServer.dir/rule
+
+# Convenience name for target.
+testServer: test/CMakeFiles/testServer.dir/rule
+.PHONY : testServer
+
+# clean rule for target.
+test/CMakeFiles/testServer.dir/clean:
+	$(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/clean
+.PHONY : test/CMakeFiles/testServer.dir/clean
+
+# clean rule for target.
+clean: test/CMakeFiles/testServer.dir/clean
 .PHONY : clean
 
 #=============================================================================

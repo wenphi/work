@@ -13,19 +13,29 @@ public:
   {
     needReply = false;
   }
-  ~moduleBase() {}
+  virtual ~moduleBase() {}
   virtual void operator()() = 0;
   virtual actionBase *praseCmdtoAction(Json::Value JsonCmd) = 0;
   // bool MsgToParams(Json::Value, std::vector<autoValue> param); //将消息参数提取出来,格式待定,可以是第一个参数命令号...
-  bool MsgRely();
-  bool getMessage(Json::Value &msg)
+  //输出
+  Json::Value outPutReply()
+  {
+    return messageReply;
+  }
+  //输入
+  bool setMessage(Json::Value &msg)
   {
     messageHolder = msg;
     return true;
   };
+  bool setReply(Json::Value &data)
+  {
+    messageReply = data;
+    return true;
+  }
 
 protected:
-  bool getReply(Json::Value &msg);
+  // bool getReply(Json::Value &msg);
   actionBase *cmdBase;
   bool needReply;
   Json::Value messageHolder;

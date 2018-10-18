@@ -127,6 +127,58 @@ test1/fast:
 	$(MAKE) -f test/CMakeFiles/test1.dir/build.make test/CMakeFiles/test1.dir/build
 .PHONY : test1/fast
 
+#=============================================================================
+# Target rules for targets named testClient0
+
+# Build rule for target.
+testClient0: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testClient0
+.PHONY : testClient0
+
+# fast build rule for target.
+testClient0/fast:
+	$(MAKE) -f test/CMakeFiles/testClient0.dir/build.make test/CMakeFiles/testClient0.dir/build
+.PHONY : testClient0/fast
+
+#=============================================================================
+# Target rules for targets named testClient1
+
+# Build rule for target.
+testClient1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testClient1
+.PHONY : testClient1
+
+# fast build rule for target.
+testClient1/fast:
+	$(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/build
+.PHONY : testClient1/fast
+
+#=============================================================================
+# Target rules for targets named testMsg
+
+# Build rule for target.
+testMsg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testMsg
+.PHONY : testMsg
+
+# fast build rule for target.
+testMsg/fast:
+	$(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/build
+.PHONY : testMsg/fast
+
+#=============================================================================
+# Target rules for targets named testServer
+
+# Build rule for target.
+testServer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testServer
+.PHONY : testServer
+
+# fast build rule for target.
+testServer/fast:
+	$(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/build
+.PHONY : testServer/fast
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -136,7 +188,11 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test_src"
+	@echo "... testClient0"
+	@echo "... testClient1"
 	@echo "... test1"
+	@echo "... testMsg"
+	@echo "... testServer"
 .PHONY : help
 
 

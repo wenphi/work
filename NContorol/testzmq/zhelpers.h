@@ -23,11 +23,13 @@ s_recv(void *socket)
 {
     zmq_msg_t message;
     zmq_msg_init(&message);
-    if (zmq_recvmsg(socket, &message, 0))
-        exit(1); //  Context terminated, exit
+    char *string = NULL;
+    if (zmq_recvmsg(socket, &message, 0) < 0)
+        // exit(1); //  Context terminated, exit
+        return string;
 
     int size = zmq_msg_size(&message);
-    char *string = (char *)malloc(size + 1);
+    string = (char *)malloc(size + 1);
     memcpy(string, zmq_msg_data(&message), size);
     zmq_msg_close(&message);
     string[size] = 0;
@@ -43,7 +45,7 @@ s_send(void *socket, char *string)
     zmq_msg_init_size(&message, strlen(string));
     memcpy(zmq_msg_data(&message), string, strlen(string));
     rc = zmq_sendmsg(socket, &message, 0);
-    assert(!rc);
+    assert(rc >= 0);
     zmq_msg_close(&message);
     return (rc);
 }
@@ -58,7 +60,7 @@ s_sendmore(void *socket, char *string)
     memcpy(zmq_msg_data(&message), string, strlen(string));
     rc = zmq_sendmsg(socket, &message, ZMQ_SNDMORE);
     zmq_msg_close(&message);
-    assert(!rc);
+    assert(rc >= 0);
     return (rc);
 }
 
