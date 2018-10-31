@@ -1,58 +1,62 @@
 #pragma once
+#include "../hello/hello.hpp"
 #include "../motion/motion.hpp"
 #include "../io/io.hpp"
 #include "../base/messageBase.hpp"
+#include "../base/messageType.hpp"
+#include "../base/stateBase.hpp"
+#include "robotStates.hpp"
 
-enum M_STATE
-{
-    M_INITIAL,
-    M_ERROR,
-    M_WARNING,
-    M_RUNNING,
-
-};
 class robotStateMechine
 {
   public:
-    robotStateMechine(std::string serverAddress) : motionInstance(), ioInstance()
+    robotStateMechine(std::string serverAddress) : motionInstance(), ioInstance(), helloInstance()
     {
         zmqServer = new messageServer(serverAddress);
-        mechine_state = M_INITIAL;
+        preStateBase = new stateInit();
         stopFlag = false;
     };
     ~robotStateMechine()
     {
         delete zmqServer;
+        delete preStateBase;
     };
 
     void updateHook();
-    //得到指定模块子类
-    moduleBase *praseCmdtoModule(Json::Value &msg);
-
-    //刷新状态
-    void updateState() { return; };
-    //消息处理(待定)
-
-    bool replyMessage(Json::Value &jsonDate);
-    bool msgToValue(char *buf, Json::Value &JsonCmd);
-    bool msgToVector(char *buf, std::vector<autoValue> &params);
+    //返回基类指针
     static moduleBase *getModuleBasePtr();
-    void setStop()
+    void setStop() { stopFlag = true; }
+    void setStart() { stopFlag = false; }
+    //
+    void test()
     {
-        stopFlag = true;
-    }
-    void setStart()
-    {
-        stopFlag = false;
+        static int a = 0;
+        std::cout << "in robot state mechine:" << a++ << std::endl;
     }
 
-  private:
-    bool stopFlag;
-    messageServer *zmqServer;
-    M_STATE mechine_state;
-    static moduleBase *baseInstance;
+  protected:
+    //得到指定模块子类
+    moduleBase *praseCmdToModule();
+    //刷新状态
+    void updateStateHolder(Json::Value) { return; };
+
+    //new test
+    bool recvMessage();
+    bool replyMessage();
+
+  public:
+    /*模块实例*/
+    hello helloInstance;
     motion motionInstance;
     io ioInstance;
-    Json::Value msgHolder;
-    Json::Value msgReply;
+
+  private:
+    bool stopFlag;                   //退出标志位
+    msgHolder_t msgHolder;           //消息数据保存结构体
+    replyHolder_t replyHolder;       //应答数据保存结构体
+    stateHolder_t stateHolder;       //状态字保存结构体
+    messageServer *zmqServer;        //zmq服务端
+    stateBase *preStateBase;         //当前状态
+    stateBase *nextStateBase;        //下一状态
+    static moduleBase *baseInstance; //模块基类指针
 };

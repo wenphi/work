@@ -74,7 +74,7 @@ src/preinstall:
 src/CMakeFiles/test_src.dir/all:
 	$(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/depend
 	$(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  6 7 8 9 10
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  7 8 9 10 11 12 13 14
 	@echo "Built target test_src"
 .PHONY : src/CMakeFiles/test_src.dir/all
 
@@ -84,7 +84,7 @@ all: src/CMakeFiles/test_src.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/test_src.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/test_src.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/test_src.dir/rule
@@ -109,6 +109,7 @@ clean: src/CMakeFiles/test_src.dir/clean
 test/all: test/CMakeFiles/test1.dir/all
 test/all: test/CMakeFiles/testClient0.dir/all
 test/all: test/CMakeFiles/testClient1.dir/all
+test/all: test/CMakeFiles/testHello.dir/all
 test/all: test/CMakeFiles/testMsg.dir/all
 test/all: test/CMakeFiles/testServer.dir/all
 .PHONY : test/all
@@ -117,6 +118,7 @@ test/all: test/CMakeFiles/testServer.dir/all
 test/clean: test/CMakeFiles/test1.dir/clean
 test/clean: test/CMakeFiles/testClient0.dir/clean
 test/clean: test/CMakeFiles/testClient1.dir/clean
+test/clean: test/CMakeFiles/testHello.dir/clean
 test/clean: test/CMakeFiles/testMsg.dir/clean
 test/clean: test/CMakeFiles/testServer.dir/clean
 .PHONY : test/clean
@@ -142,7 +144,7 @@ all: test/CMakeFiles/test1.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/test1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/test1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/test1.dir/rule
@@ -177,7 +179,7 @@ all: test/CMakeFiles/testClient0.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/testClient0.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testClient0.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/testClient0.dir/rule
@@ -212,7 +214,7 @@ all: test/CMakeFiles/testClient1.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/testClient1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testClient1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/testClient1.dir/rule
@@ -231,13 +233,48 @@ clean: test/CMakeFiles/testClient1.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target test/CMakeFiles/testHello.dir
+
+# All Build rule for target.
+test/CMakeFiles/testHello.dir/all: src/CMakeFiles/test_src.dir/all
+	$(MAKE) -f test/CMakeFiles/testHello.dir/build.make test/CMakeFiles/testHello.dir/depend
+	$(MAKE) -f test/CMakeFiles/testHello.dir/build.make test/CMakeFiles/testHello.dir/build
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  4
+	@echo "Built target testHello"
+.PHONY : test/CMakeFiles/testHello.dir/all
+
+# Include target in all.
+all: test/CMakeFiles/testHello.dir/all
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+test/CMakeFiles/testHello.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testHello.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
+.PHONY : test/CMakeFiles/testHello.dir/rule
+
+# Convenience name for target.
+testHello: test/CMakeFiles/testHello.dir/rule
+.PHONY : testHello
+
+# clean rule for target.
+test/CMakeFiles/testHello.dir/clean:
+	$(MAKE) -f test/CMakeFiles/testHello.dir/build.make test/CMakeFiles/testHello.dir/clean
+.PHONY : test/CMakeFiles/testHello.dir/clean
+
+# clean rule for target.
+clean: test/CMakeFiles/testHello.dir/clean
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target test/CMakeFiles/testMsg.dir
 
 # All Build rule for target.
 test/CMakeFiles/testMsg.dir/all: src/CMakeFiles/test_src.dir/all
 	$(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/depend
 	$(MAKE) -f test/CMakeFiles/testMsg.dir/build.make test/CMakeFiles/testMsg.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  4
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  5
 	@echo "Built target testMsg"
 .PHONY : test/CMakeFiles/testMsg.dir/all
 
@@ -247,7 +284,7 @@ all: test/CMakeFiles/testMsg.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/testMsg.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testMsg.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/testMsg.dir/rule
@@ -272,7 +309,7 @@ clean: test/CMakeFiles/testMsg.dir/clean
 test/CMakeFiles/testServer.dir/all: src/CMakeFiles/test_src.dir/all
 	$(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/depend
 	$(MAKE) -f test/CMakeFiles/testServer.dir/build.make test/CMakeFiles/testServer.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  5
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles  6
 	@echo "Built target testServer"
 .PHONY : test/CMakeFiles/testServer.dir/all
 
@@ -282,7 +319,7 @@ all: test/CMakeFiles/testServer.dir/all
 
 # Build rule for subdir invocation for target.
 test/CMakeFiles/testServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 9
 	$(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ywh/work/controlFrame/build/CMakeFiles 0
 .PHONY : test/CMakeFiles/testServer.dir/rule

@@ -118,9 +118,32 @@ src/CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.o.provides: 
 
 src/CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.o.provides.build: src/CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.o
 
+src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o: src/CMakeFiles/test_src.dir/flags.make
+src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o: ../src/robotStateMechine/robotStates.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o -c /home/ywh/work/controlFrame/src/robotStateMechine/robotStates.cpp
+
+src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.i"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/ywh/work/controlFrame/src/robotStateMechine/robotStates.cpp > CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.i
+
+src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.s"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/ywh/work/controlFrame/src/robotStateMechine/robotStates.cpp -o CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.s
+
+src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o.requires:
+.PHONY : src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o.requires
+
+src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o.provides: src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o.provides.build
+.PHONY : src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o.provides
+
+src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o.provides.build: src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o
+
 src/CMakeFiles/test_src.dir/io/ioCommands.cpp.o: src/CMakeFiles/test_src.dir/flags.make
 src/CMakeFiles/test_src.dir/io/ioCommands.cpp.o: ../src/io/ioCommands.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/test_src.dir/io/ioCommands.cpp.o"
 	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test_src.dir/io/ioCommands.cpp.o -c /home/ywh/work/controlFrame/src/io/ioCommands.cpp
 
@@ -143,7 +166,7 @@ src/CMakeFiles/test_src.dir/io/ioCommands.cpp.o.provides.build: src/CMakeFiles/t
 
 src/CMakeFiles/test_src.dir/io/io.cpp.o: src/CMakeFiles/test_src.dir/flags.make
 src/CMakeFiles/test_src.dir/io/io.cpp.o: ../src/io/io.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/test_src.dir/io/io.cpp.o"
 	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test_src.dir/io/io.cpp.o -c /home/ywh/work/controlFrame/src/io/io.cpp
 
@@ -164,13 +187,62 @@ src/CMakeFiles/test_src.dir/io/io.cpp.o.provides: src/CMakeFiles/test_src.dir/io
 
 src/CMakeFiles/test_src.dir/io/io.cpp.o.provides.build: src/CMakeFiles/test_src.dir/io/io.cpp.o
 
+src/CMakeFiles/test_src.dir/hello/hello.cpp.o: src/CMakeFiles/test_src.dir/flags.make
+src/CMakeFiles/test_src.dir/hello/hello.cpp.o: ../src/hello/hello.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles $(CMAKE_PROGRESS_7)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/test_src.dir/hello/hello.cpp.o"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test_src.dir/hello/hello.cpp.o -c /home/ywh/work/controlFrame/src/hello/hello.cpp
+
+src/CMakeFiles/test_src.dir/hello/hello.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_src.dir/hello/hello.cpp.i"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/ywh/work/controlFrame/src/hello/hello.cpp > CMakeFiles/test_src.dir/hello/hello.cpp.i
+
+src/CMakeFiles/test_src.dir/hello/hello.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_src.dir/hello/hello.cpp.s"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/ywh/work/controlFrame/src/hello/hello.cpp -o CMakeFiles/test_src.dir/hello/hello.cpp.s
+
+src/CMakeFiles/test_src.dir/hello/hello.cpp.o.requires:
+.PHONY : src/CMakeFiles/test_src.dir/hello/hello.cpp.o.requires
+
+src/CMakeFiles/test_src.dir/hello/hello.cpp.o.provides: src/CMakeFiles/test_src.dir/hello/hello.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/hello/hello.cpp.o.provides.build
+.PHONY : src/CMakeFiles/test_src.dir/hello/hello.cpp.o.provides
+
+src/CMakeFiles/test_src.dir/hello/hello.cpp.o.provides.build: src/CMakeFiles/test_src.dir/hello/hello.cpp.o
+
+src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o: src/CMakeFiles/test_src.dir/flags.make
+src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o: ../src/hello/helloCommands.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/ywh/work/controlFrame/build/CMakeFiles $(CMAKE_PROGRESS_8)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/test_src.dir/hello/helloCommands.cpp.o -c /home/ywh/work/controlFrame/src/hello/helloCommands.cpp
+
+src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/test_src.dir/hello/helloCommands.cpp.i"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/ywh/work/controlFrame/src/hello/helloCommands.cpp > CMakeFiles/test_src.dir/hello/helloCommands.cpp.i
+
+src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/test_src.dir/hello/helloCommands.cpp.s"
+	cd /home/ywh/work/controlFrame/build/src && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/ywh/work/controlFrame/src/hello/helloCommands.cpp -o CMakeFiles/test_src.dir/hello/helloCommands.cpp.s
+
+src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o.requires:
+.PHONY : src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o.requires
+
+src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o.provides: src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o.requires
+	$(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o.provides.build
+.PHONY : src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o.provides
+
+src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o.provides.build: src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o
+
 # Object files for target test_src
 test_src_OBJECTS = \
 "CMakeFiles/test_src.dir/motion/motionCommands.cpp.o" \
 "CMakeFiles/test_src.dir/motion/motion.cpp.o" \
 "CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.o" \
+"CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o" \
 "CMakeFiles/test_src.dir/io/ioCommands.cpp.o" \
-"CMakeFiles/test_src.dir/io/io.cpp.o"
+"CMakeFiles/test_src.dir/io/io.cpp.o" \
+"CMakeFiles/test_src.dir/hello/hello.cpp.o" \
+"CMakeFiles/test_src.dir/hello/helloCommands.cpp.o"
 
 # External object files for target test_src
 test_src_EXTERNAL_OBJECTS =
@@ -178,8 +250,11 @@ test_src_EXTERNAL_OBJECTS =
 src/libtest_src.a: src/CMakeFiles/test_src.dir/motion/motionCommands.cpp.o
 src/libtest_src.a: src/CMakeFiles/test_src.dir/motion/motion.cpp.o
 src/libtest_src.a: src/CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.o
+src/libtest_src.a: src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o
 src/libtest_src.a: src/CMakeFiles/test_src.dir/io/ioCommands.cpp.o
 src/libtest_src.a: src/CMakeFiles/test_src.dir/io/io.cpp.o
+src/libtest_src.a: src/CMakeFiles/test_src.dir/hello/hello.cpp.o
+src/libtest_src.a: src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o
 src/libtest_src.a: src/CMakeFiles/test_src.dir/build.make
 src/libtest_src.a: src/CMakeFiles/test_src.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX static library libtest_src.a"
@@ -193,8 +268,11 @@ src/CMakeFiles/test_src.dir/build: src/libtest_src.a
 src/CMakeFiles/test_src.dir/requires: src/CMakeFiles/test_src.dir/motion/motionCommands.cpp.o.requires
 src/CMakeFiles/test_src.dir/requires: src/CMakeFiles/test_src.dir/motion/motion.cpp.o.requires
 src/CMakeFiles/test_src.dir/requires: src/CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.o.requires
+src/CMakeFiles/test_src.dir/requires: src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o.requires
 src/CMakeFiles/test_src.dir/requires: src/CMakeFiles/test_src.dir/io/ioCommands.cpp.o.requires
 src/CMakeFiles/test_src.dir/requires: src/CMakeFiles/test_src.dir/io/io.cpp.o.requires
+src/CMakeFiles/test_src.dir/requires: src/CMakeFiles/test_src.dir/hello/hello.cpp.o.requires
+src/CMakeFiles/test_src.dir/requires: src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o.requires
 .PHONY : src/CMakeFiles/test_src.dir/requires
 
 src/CMakeFiles/test_src.dir/clean:

@@ -1,0 +1,2 @@
+/home/ywh/work/controlFrame/build_arm/src/CMakeFiles/test_src.dir
+/home/ywh/work/controlFrame/build_arm/test/CMakeFiles/testServer.dir

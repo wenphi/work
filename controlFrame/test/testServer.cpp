@@ -1,6 +1,6 @@
-#include "../src/robotStateMechine/robotStateMechine.hpp"
+#include "robotStateMechine/robotStateMechine.hpp"
 #include "base/messageBase.hpp"
-#include <zmq.h>
+#include "jsoncpp/include/json/json.h"
 #include <csignal>
 #include <iostream>
 #include <thread>
@@ -11,8 +11,10 @@
 bool stopFlag = false;
 moduleBase *robotStateMechine ::baseInstance = NULL;
 std::string taddress = "ipc://stateMechine.ipc";
+// std::string taddress = "tcp://*:5566";
 
-Json::Value encodeCmd(int module, int cmd, std::string message, int data = 123456)
+Json::Value
+encodeCmd(int module, int cmd, std::string message, int data = 123456)
 {
     Json::Value jsonCmd;
     Json::Value root;
@@ -92,6 +94,16 @@ void sendHook2()
     std::cout << "apiThread2:"
               << "send num:" << count << " exit done!" << std::endl;
 }
+
+void masterStation(robotStateMechine &rsm)
+{
+    while (!stopFlag)
+    {
+        rsm.helloInstance.printHook();
+        sleep(3);
+    }
+}
+
 void stop(int sig)
 {
     if (sig)
@@ -104,11 +116,12 @@ int main()
     signal(SIGINT, stop);
     robotStateMechine *rsm = new robotStateMechine(taddress);
     threads.emplace_back(&robotStateMechine::updateHook, rsm);
+    // threads.emplace_back(&masterStation, std::ref(*rsm));
 
     rsm->setStart();
     while (!stopFlag)
     {
-        sleep(1);
+        sleep(3);
     }
 
     rsm->setStop();

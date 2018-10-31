@@ -6,10 +6,10 @@ bool motionCmdAddLine::run(Json::Value &jsonData)
     motion *motionptr;
     //调用相关方法
     motionptr = dynamic_cast<motion *>(robotStateMechine::getModuleBasePtr());
-    std::cout << "motion: cmd add line:" << motionptr->line_num++ << "  " << jsonData["message"].asString() << "count: " << jsonData["data"].asInt() << std::endl;
+    std::cout << "motion: cmd add line:" << motionptr->line_num++ << "  " << jsonData["param2"].asString() << "count: " << jsonData["param1"].asInt() << std::endl;
     Json::Value jsonReply;
-    char line_num[0];
-    sprintf(line_num, "%d", motionptr->line_num);
+    char line_num[10];
+    snprintf(line_num, sizeof(line_num), "%d", motionptr->line_num);
     std::string msg = "cmd motion add line done:" + std::string(line_num) + std::string("!");
     //设置返回值
     jsonReply["message"] = msg;

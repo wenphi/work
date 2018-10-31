@@ -144,6 +144,20 @@ testClient1/fast:
 .PHONY : testClient1/fast
 
 # Convenience name for target.
+test/CMakeFiles/testHello.dir/rule:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testHello.dir/rule
+.PHONY : test/CMakeFiles/testHello.dir/rule
+
+# Convenience name for target.
+testHello: test/CMakeFiles/testHello.dir/rule
+.PHONY : testHello
+
+# fast build rule for target.
+testHello/fast:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testHello.dir/build.make test/CMakeFiles/testHello.dir/build
+.PHONY : testHello/fast
+
+# Convenience name for target.
 test/CMakeFiles/testMsg.dir/rule:
 	cd /home/ywh/work/controlFrame/build && $(MAKE) -f CMakeFiles/Makefile2 test/CMakeFiles/testMsg.dir/rule
 .PHONY : test/CMakeFiles/testMsg.dir/rule
@@ -243,6 +257,30 @@ testClient1.cpp.s:
 	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testClient1.dir/build.make test/CMakeFiles/testClient1.dir/testClient1.cpp.s
 .PHONY : testClient1.cpp.s
 
+testHello.o: testHello.cpp.o
+.PHONY : testHello.o
+
+# target to build an object file
+testHello.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testHello.dir/build.make test/CMakeFiles/testHello.dir/testHello.cpp.o
+.PHONY : testHello.cpp.o
+
+testHello.i: testHello.cpp.i
+.PHONY : testHello.i
+
+# target to preprocess a source file
+testHello.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testHello.dir/build.make test/CMakeFiles/testHello.dir/testHello.cpp.i
+.PHONY : testHello.cpp.i
+
+testHello.s: testHello.cpp.s
+.PHONY : testHello.s
+
+# target to generate assembly for a file
+testHello.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f test/CMakeFiles/testHello.dir/build.make test/CMakeFiles/testHello.dir/testHello.cpp.s
+.PHONY : testHello.cpp.s
+
 testServer.o: testServer.cpp.o
 .PHONY : testServer.o
 
@@ -302,6 +340,7 @@ help:
 	@echo "... testClient0"
 	@echo "... testClient1"
 	@echo "... test1"
+	@echo "... testHello"
 	@echo "... testMsg"
 	@echo "... testServer"
 	@echo "... test.o"
@@ -313,6 +352,9 @@ help:
 	@echo "... testClient1.o"
 	@echo "... testClient1.i"
 	@echo "... testClient1.s"
+	@echo "... testHello.o"
+	@echo "... testHello.i"
+	@echo "... testHello.s"
 	@echo "... testServer.o"
 	@echo "... testServer.i"
 	@echo "... testServer.s"

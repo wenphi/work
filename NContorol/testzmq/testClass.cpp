@@ -199,6 +199,21 @@ class b : public a
         cout << " new function int b" << endl;
     }
 };
+
+class c
+{
+  public:
+    c(int num_) { num = num_; };
+    ~c();
+    static void printHook()
+    {
+        std::cout << "num:" << num << std::endl;
+    }
+
+  private:
+    int num;
+};
+
 int main()
 {
     const char *data = "is b";

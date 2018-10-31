@@ -7,11 +7,11 @@ moduleBase *robotStateMechine::getModuleBasePtr()
 {
     return baseInstance;
 };
-moduleBase *robotStateMechine::praseCmdtoModule(Json::Value &msg)
+moduleBase *robotStateMechine::praseCmdToModule()
 {
     //根据参数进行选取子类
     //指向子类
-    switch (msg["module"].asInt())
+    switch (msgHolder.modules)
     {
     case 0:
         baseInstance = &motionInstance;
@@ -19,55 +19,85 @@ moduleBase *robotStateMechine::praseCmdtoModule(Json::Value &msg)
     case 1:
         baseInstance = &ioInstance;
         break;
+    case 2:
+        baseInstance = &helloInstance;
+        break;
     default:
         baseInstance = nullptr;
     }
     if (baseInstance != nullptr)
-        baseInstance->setMessage(msg);
+        baseInstance->setMessage(msgHolder.msgData);
     return baseInstance;
 }
 
 void robotStateMechine::updateHook()
 {
-
     while (!stopFlag)
     {
-        //获取消息
-        msgHolder = zmqServer->recvJson();
-        //消息处理,添加状态字
-        if (!msgHolder.isNull())
+        if (recvMessage())
         {
-            switch (mechine_state)
+            if (msgHolder.msgType == msgtype_t::MSG_STATE)
+                updateStateHolder(msgHolder.msgData);
+            else
             {
-            case M_INITIAL:
-                mechine_state = M_RUNNING;
-                break;
-            case M_RUNNING:
-                break;
-            default:
-                std::cout << " 没有这个状态!" << std::endl;
+                preStateBase->filterHook(msgHolder);
+                if (msgHolder.msgIsValid)
+                {
+                    baseInstance = praseCmdToModule();
+                    if (baseInstance != nullptr)
+                    {
+                        (*baseInstance)();
+                        replyHolder.moduleReply = baseInstance->outPutReply();
+                        updateStateHolder(replyHolder.moduleReply);
+                    }
+                }
             }
-            //检测消息是否有效
-            baseInstance = praseCmdtoModule(msgHolder);
-            if (baseInstance != nullptr)
-                (*baseInstance)();
-            msgReply = baseInstance->outPutReply();
-            replyMessage(msgReply);
+            if (msgHolder.needReply)
+                replyMessage();
         }
-        else
+        preStateBase->updateHook(this);
+        nextStateBase = preStateBase->updateState(stateHolder);
+        if (nextStateBase != nullptr)
         {
-            std::cout << "do something else..." << std::endl;
-            sleep(2);
+            delete preStateBase;
+            preStateBase = nextStateBase;
         }
-        //刷新状态
-        updateState();
-        usleep(10000);
     }
-    std::cout << "exit updateHook!" << std::endl;
-    return;
 }
-bool robotStateMechine::replyMessage(Json::Value &jsonDate)
+
+bool robotStateMechine::replyMessage()
 {
-    zmqServer->sendJson(jsonDate);
+    Json::Value msgReply_JSON;
+    // if (msgHolder.msgType == msgtype_t::MSG_CMD)
+    msgReply_JSON["moduleReply"] = replyHolder.moduleReply;
+    msgReply_JSON["stateMechineReply"] = replyHolder.stateMechineReply;
+    zmqServer->sendJson(msgReply_JSON);
+    return true;
+}
+
+//test
+//获取消息
+bool robotStateMechine::recvMessage()
+{
+    Json::Value data = zmqServer->recvJson();
+    if (data.isNull())
+    {
+        msgHolder.msgIsNull = true;
+        return false;
+    }
+    if (data["msgType"].isNull())
+        return false;
+    msgHolder.msgType = data["msgType"].asInt();
+    if (data["module"].isNull())
+        return false;
+    msgHolder.modules = data["module"].asInt();
+    if (data["msgData"].isNull())
+        return false;
+    msgHolder.msgData = data["msgData"];
+    if (data["needReply"].isNull())
+        return false;
+    msgHolder.needReply = data["needReply"].asBool();
+    msgHolder.msgIsValid = false;
+    msgHolder.msgIsNull = false;
     return true;
 }

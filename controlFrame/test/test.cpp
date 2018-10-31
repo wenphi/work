@@ -1,6 +1,6 @@
-#include "../src/robotStateMechine/robotStateMechine.hpp"
+#include "robotStateMechine/robotStateMechine.hpp"
 #include "base/messageBase.hpp"
-#include <zmq.h>
+#include "zhelpers.h"
 #include <csignal>
 #include <iostream>
 #include <thread>
@@ -97,28 +97,41 @@ void stop(int sig)
     if (sig)
         stopFlag = true;
 }
+enum state_t
+{
+    T1,
+    T2,
+};
 
 int main()
 {
     std::vector<std::thread> threads;
     signal(SIGINT, stop);
-    robotStateMechine *rsm = new robotStateMechine(taddress);
-    threads.emplace_back(&robotStateMechine::updateHook, rsm);
-    threads.emplace_back(sendHook0);
-    threads.emplace_back(sendHook1);
-    threads.emplace_back(sendHook2);
-
-    rsm->setStart();
+    // robotStateMechine *rsm = new robotStateMechine(taddress);
+    // threads.emplace_back(&robotStateMechine::updateHook, rsm);
+    // threads.emplace_back(sendHook0);
+    // threads.emplace_back(sendHook1);
+    // threads.emplace_back(sendHook2);
+    // rsm->setStart();
+    Json::Value data;
+    data["state"] = state_t::T2;
+    std::cout << data.toStyledString() << std::endl;
     while (!stopFlag)
     {
         sleep(1);
     }
-    rsm->setStop();
-    for (auto &thr : threads)
-        thr.join();
+    // rsm->setStop();
+    // for (auto &thr : threads)
+    //     thr.join();
+    int i = data["state"].asInt();
+    if (i == state_t::T1)
+        std::cout << "In T1!" << std::endl;
+    else if (i == state_t::T2)
+        std::cout << "In T2!" << std::endl;
+
     std::cout << "all thread exit done!" << std::endl;
 
-    delete rsm;
+    // delete rsm;
     std::cout << "term exit done!" << std::endl;
     return 0;
 }

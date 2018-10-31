@@ -4,11 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ywh/work/controlFrame/src/hello/hello.cpp" "/home/ywh/work/controlFrame/build/src/CMakeFiles/test_src.dir/hello/hello.cpp.o"
+  "/home/ywh/work/controlFrame/src/hello/helloCommands.cpp" "/home/ywh/work/controlFrame/build/src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o"
   "/home/ywh/work/controlFrame/src/io/io.cpp" "/home/ywh/work/controlFrame/build/src/CMakeFiles/test_src.dir/io/io.cpp.o"
   "/home/ywh/work/controlFrame/src/io/ioCommands.cpp" "/home/ywh/work/controlFrame/build/src/CMakeFiles/test_src.dir/io/ioCommands.cpp.o"
   "/home/ywh/work/controlFrame/src/motion/motion.cpp" "/home/ywh/work/controlFrame/build/src/CMakeFiles/test_src.dir/motion/motion.cpp.o"
   "/home/ywh/work/controlFrame/src/motion/motionCommands.cpp" "/home/ywh/work/controlFrame/build/src/CMakeFiles/test_src.dir/motion/motionCommands.cpp.o"
   "/home/ywh/work/controlFrame/src/robotStateMechine/robotStateMechine.cpp" "/home/ywh/work/controlFrame/build/src/CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.o"
+  "/home/ywh/work/controlFrame/src/robotStateMechine/robotStates.cpp" "/home/ywh/work/controlFrame/build/src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

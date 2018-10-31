@@ -1,19 +1,21 @@
 #pragma once
-#include "zhelpers.h"
-#include <jsoncpp/json/json.h>
+// #include <jsoncpp/json/json.h>
+#include "jsoncpp/include/json/json.h"
+#include "zeromq/zhelpers.h"
 #include <iostream>
 
 //客户段可以选择一次发送接收多条
 class messageClient
 {
   public:
-    messageClient(std::string address_, std::string id, int blockTime)
+    messageClient(std::string address_, std::string id, int blockTime = 1000)
     {
         address = address_;
         clientid = id;
         idDealer = id + std::string(".dealer");
         idReq = id + std::string(".req");
-        // std::cout << "debug:client:address:" << idDealer << "||" << idReq << std::endl;
+        std::cout << "debug:client:identify: " << idDealer << "||" << idReq << std::endl;
+        std::cout << "debug::client:address: " << address << std::endl;
         //创建环境
         context = zmq_ctx_new();
         //创建socket
@@ -23,9 +25,12 @@ class messageClient
         zmq_setsockopt(pSockDealer, ZMQ_SNDTIMEO, &blockTime, sizeof(blockTime));
         zmq_setsockopt(pSockDealer, ZMQ_RCVTIMEO, &blockTime, sizeof(blockTime));
         //设置退出时的等待时间--1000ms
-        int linger_time = 1000;
+        int linger_time = 0;
         zmq_setsockopt(pSockDealer, ZMQ_LINGER, &linger_time, sizeof(linger_time));
         zmq_setsockopt(pSockReq, ZMQ_LINGER, &linger_time, sizeof(linger_time));
+        //设置socket缓存的最大消息条数
+        int sendHwm = 10;
+        zmq_setsockopt(pSockDealer, ZMQ_SNDHWM, &sendHwm, sizeof(sendHwm));
         //设置id
         zmq_setsockopt(pSockDealer, ZMQ_IDENTITY, idDealer.c_str(), idDealer.size());
         zmq_setsockopt(pSockReq, ZMQ_IDENTITY, idReq.c_str(), idReq.size());
@@ -38,21 +43,26 @@ class messageClient
     messageClient(std::string address_)
     {
         char identity[10];
-        sprintf(identity, "%04X-%04X", within(0x10000), within(0x10000));
+        snprintf(identity, sizeof(identity), "%04X-%04X", within(0x10000), within(0x10000));
         clientid = std::string(identity);
         idDealer = std::string(identity) + std::string(".dealer");
         idReq = std::string(identity) + std::string(".req");
+        std::cout << "debug:client:address:" << idDealer << "||" << idReq << std::endl;
         address = address_;
         //创建环境
         context = zmq_ctx_new();
         //创建socket
         pSockDealer = zmq_socket(context, ZMQ_DEALER);
         pSockReq = zmq_socket(context, ZMQ_REQ);
+        //设置阻塞时间
+        int blockTime = 1000;
+        zmq_setsockopt(pSockDealer, ZMQ_SNDTIMEO, &blockTime, sizeof(blockTime));
+        zmq_setsockopt(pSockDealer, ZMQ_RCVTIMEO, &blockTime, sizeof(blockTime));
         //配置id
         zmq_setsockopt(pSockDealer, ZMQ_IDENTITY, &idDealer, sizeof(idDealer));
         zmq_setsockopt(pSockReq, ZMQ_IDENTITY, &idReq, sizeof(idReq));
         //设置socket退出时的阻塞时间--1000ms
-        int linger_time = 1000;
+        int linger_time = 0;
         zmq_setsockopt(pSockDealer, ZMQ_LINGER, &linger_time, sizeof(linger_time));
         zmq_setsockopt(pSockReq, ZMQ_LINGER, &linger_time, sizeof(linger_time));
         //连接
@@ -159,6 +169,9 @@ class messageServer
         //设置socket退出时的阻塞时间--1000ms
         int linger_time = 1000;
         zmq_setsockopt(pSockRouter, ZMQ_LINGER, &linger_time, sizeof(linger_time));
+        //设置socket缓存的最大消息条数
+        int recvHwm = 10;
+        zmq_setsockopt(pSockRouter, ZMQ_RCVHWM, &recvHwm, sizeof(recvHwm));
         //绑定
         zmq_bind(pSockRouter, address.c_str());
         //完成
@@ -256,15 +269,11 @@ class messageServer
 
   private:
     bool msgReady = false;
-    bool isBlock; //每次调用recv后刷新,决定了发送类型{地址+""+数据}/{地址+数据}
-
+    bool isBlock;         //每次调用recv后刷新,决定了发送类型{地址+""+数据}/{地址+数据}
     std::string clientid; //每次调用recv后刷新,决定了下一次send的发送地址;
-
-    std::string address; //zmq链接的通讯地址
-
-    void *context;     //zmq的环境/上下文
-    void *pSockRouter; //zmq创建Router的sock
-
-    int rblockTime; //接收阻塞时间
-    int sblockTime; //发送阻塞时间
+    std::string address;  //zmq链接的通讯地址
+    void *context;        //zmq的环境/上下文
+    void *pSockRouter;    //zmq创建Router的sock
+    int rblockTime;       //接收阻塞时间
+    int sblockTime;       //发送阻塞时间
 };

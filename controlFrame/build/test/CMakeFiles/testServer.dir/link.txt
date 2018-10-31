@@ -1,1 +1,1 @@
-/usr/bin/c++    -std=c++11   CMakeFiles/testServer.dir/testServer.cpp.o  -o testServer -rdynamic ../src/libtest_src.a -ljsoncpp -lzmq -lpthread 
+/usr/bin/c++    -std=c++11   CMakeFiles/testServer.dir/testServer.cpp.o  -o testServer  -L/home/ywh/work/controlFrame/depend/jsoncpp/build_x86/src/lib_json  -L/home/ywh/work/controlFrame/depend/zeromq/libzmq/zmqlib -rdynamic ../src/libtest_src.a -ljsoncpp -lzmq -lpthread -Wl,-rpath,/home/ywh/work/controlFrame/depend/jsoncpp/build_x86/src/lib_json:/home/ywh/work/controlFrame/depend/zeromq/libzmq/zmqlib 

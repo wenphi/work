@@ -19,20 +19,10 @@ actionBase *motion::praseCmdtoAction(Json::Value jsonCmd)
     }
     if (cmdbase_)
     {
+        // std::cout << "motion recv: " << jsonCmd.toStyledString() << std::endl;
         root = jsonCmd["params"];
         // std::cout << "in motion prase: " << root["message"].asString() << " " << root["data"].asInt() << std::endl;
         cmdbase_->setParams(root);
     }
     return cmdbase_;
 };
-void motion::operator()()
-{
-    cmdBase = praseCmdtoAction(messageHolder);
-    if (cmdBase != nullptr)
-    {
-        cmdBase->start();
-        delete cmdBase;
-    }
-    else
-        std::cout << " motion接收到未知命令!" << std::endl;
-}

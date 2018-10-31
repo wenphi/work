@@ -154,6 +154,19 @@ testClient1/fast:
 .PHONY : testClient1/fast
 
 #=============================================================================
+# Target rules for targets named testHello
+
+# Build rule for target.
+testHello: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 testHello
+.PHONY : testHello
+
+# fast build rule for target.
+testHello/fast:
+	$(MAKE) -f test/CMakeFiles/testHello.dir/build.make test/CMakeFiles/testHello.dir/build
+.PHONY : testHello/fast
+
+#=============================================================================
 # Target rules for targets named testMsg
 
 # Build rule for target.
@@ -191,6 +204,7 @@ help:
 	@echo "... testClient0"
 	@echo "... testClient1"
 	@echo "... test1"
+	@echo "... testHello"
 	@echo "... testMsg"
 	@echo "... testServer"
 .PHONY : help

@@ -13,7 +13,7 @@ bool ioCmdReadDiBit::run(Json::Value &jsonData)
     //设置返回值
     Json::Value jsonReply;
     char cmsg[100];
-    sprintf(cmsg, "the Di bit is:%d", ioptr->bitState);
+    snprintf(cmsg, sizeof(cmsg), "the Di bit is:%d", ioptr->bitState);
     jsonReply["message"] = cmsg;
     ioptr->setReply(jsonReply);
     return true;

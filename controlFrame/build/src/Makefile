@@ -115,6 +115,54 @@ test_src/fast:
 	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/build
 .PHONY : test_src/fast
 
+hello/hello.o: hello/hello.cpp.o
+.PHONY : hello/hello.o
+
+# target to build an object file
+hello/hello.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/hello/hello.cpp.o
+.PHONY : hello/hello.cpp.o
+
+hello/hello.i: hello/hello.cpp.i
+.PHONY : hello/hello.i
+
+# target to preprocess a source file
+hello/hello.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/hello/hello.cpp.i
+.PHONY : hello/hello.cpp.i
+
+hello/hello.s: hello/hello.cpp.s
+.PHONY : hello/hello.s
+
+# target to generate assembly for a file
+hello/hello.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/hello/hello.cpp.s
+.PHONY : hello/hello.cpp.s
+
+hello/helloCommands.o: hello/helloCommands.cpp.o
+.PHONY : hello/helloCommands.o
+
+# target to build an object file
+hello/helloCommands.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.o
+.PHONY : hello/helloCommands.cpp.o
+
+hello/helloCommands.i: hello/helloCommands.cpp.i
+.PHONY : hello/helloCommands.i
+
+# target to preprocess a source file
+hello/helloCommands.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.i
+.PHONY : hello/helloCommands.cpp.i
+
+hello/helloCommands.s: hello/helloCommands.cpp.s
+.PHONY : hello/helloCommands.s
+
+# target to generate assembly for a file
+hello/helloCommands.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/hello/helloCommands.cpp.s
+.PHONY : hello/helloCommands.cpp.s
+
 io/io.o: io/io.cpp.o
 .PHONY : io/io.o
 
@@ -235,6 +283,30 @@ robotStateMechine/robotStateMechine.cpp.s:
 	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/robotStateMechine/robotStateMechine.cpp.s
 .PHONY : robotStateMechine/robotStateMechine.cpp.s
 
+robotStateMechine/robotStates.o: robotStateMechine/robotStates.cpp.o
+.PHONY : robotStateMechine/robotStates.o
+
+# target to build an object file
+robotStateMechine/robotStates.cpp.o:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.o
+.PHONY : robotStateMechine/robotStates.cpp.o
+
+robotStateMechine/robotStates.i: robotStateMechine/robotStates.cpp.i
+.PHONY : robotStateMechine/robotStates.i
+
+# target to preprocess a source file
+robotStateMechine/robotStates.cpp.i:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.i
+.PHONY : robotStateMechine/robotStates.cpp.i
+
+robotStateMechine/robotStates.s: robotStateMechine/robotStates.cpp.s
+.PHONY : robotStateMechine/robotStates.s
+
+# target to generate assembly for a file
+robotStateMechine/robotStates.cpp.s:
+	cd /home/ywh/work/controlFrame/build && $(MAKE) -f src/CMakeFiles/test_src.dir/build.make src/CMakeFiles/test_src.dir/robotStateMechine/robotStates.cpp.s
+.PHONY : robotStateMechine/robotStates.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -244,6 +316,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test_src"
+	@echo "... hello/hello.o"
+	@echo "... hello/hello.i"
+	@echo "... hello/hello.s"
+	@echo "... hello/helloCommands.o"
+	@echo "... hello/helloCommands.i"
+	@echo "... hello/helloCommands.s"
 	@echo "... io/io.o"
 	@echo "... io/io.i"
 	@echo "... io/io.s"
@@ -259,6 +337,9 @@ help:
 	@echo "... robotStateMechine/robotStateMechine.o"
 	@echo "... robotStateMechine/robotStateMechine.i"
 	@echo "... robotStateMechine/robotStateMechine.s"
+	@echo "... robotStateMechine/robotStates.o"
+	@echo "... robotStateMechine/robotStates.i"
+	@echo "... robotStateMechine/robotStates.s"
 .PHONY : help
 
 
