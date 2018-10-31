@@ -1,5 +1,5 @@
 #include "robotStateMechine/robotStateMechine.hpp"
-#include "api/apiHello.hpp"
+#include "api/api.hpp"
 #include "libjsoncpp/include/json.h"
 #include <csignal>
 #include <iostream>
@@ -22,7 +22,7 @@ int main()
 {
     std::vector<std::thread> threads;
     signal(SIGINT, stop);
-    apiHello *apitest = new apiHello(taddress);
+    api *apitest = new api(taddress,"test");
     for (int i = 0; i <= 1000; i++)
     {
         apitest->setHello(i);

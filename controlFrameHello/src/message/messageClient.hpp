@@ -13,8 +13,8 @@ class messageClient
         clientid = id;
         idDealer = id + std::string(".dealer");
         idReq = id + std::string(".req");
-        // std::cout << "debug:client:identify: " << idDealer << "||" << idReq << std::endl;
-        // std::cout << "debug::client:address: " << address << std::endl;
+        std::cout << "debug:client:identify: " << idDealer << "||" << idReq << std::endl;
+        std::cout << "debug::client:address: " << address << std::endl;
         //创建环境
         context = zmq_ctx_new();
         //创建socket
@@ -29,7 +29,9 @@ class messageClient
         zmq_setsockopt(pSockReq, ZMQ_LINGER, &linger_time, sizeof(linger_time));
         //设置socket缓存的最大消息条数
         int sendHwm = 10;
+        int recvHwm=10;
         zmq_setsockopt(pSockDealer, ZMQ_SNDHWM, &sendHwm, sizeof(sendHwm));
+        zmq_setsockopt(pSockDealer, ZMQ_RCVHWM, &recvHwm, sizeof(recvHwm));
         //设置id
         zmq_setsockopt(pSockDealer, ZMQ_IDENTITY, idDealer.c_str(), idDealer.size());
         zmq_setsockopt(pSockReq, ZMQ_IDENTITY, idReq.c_str(), idReq.size());
